@@ -26,6 +26,16 @@ install.packages("usethis")
 
 ```{r}
 library(usethis)
+# send us to github togen creator
+usethis::create_github_token()
+```
+
+```{r}
+gitcreds::gitcreds_set() # 
+```
+
+```{r}
+usethis::use_git()
 ```
 
 ```{r}
@@ -33,5 +43,5 @@ library(usethis)
 ```
 
 ```{r}
-
+usethis::use_github()
 ```
