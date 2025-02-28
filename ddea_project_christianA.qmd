@@ -4,44 +4,35 @@ format: html
 editor: visual
 ---
 
-## Quarto
+# Setup
+```{r}
+library(tidyverse) # data wrangling 
+library(usethis) # access to github repo
+library(ggplot2) # plotting
+```
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+# Sessioninfo
+```{r}
+sessionInfo()
+```
 
-## Running Code
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
+# Download test dataset
 ```{r}
 url <- "https://zenodo.org/records/10909325/files/Supermarket_dataset_v3.csv?download=1"
-
 Supermarket_dataset <- read.csv(url, stringsAsFactors = FALSE)
+saveRDS(Supermarket_dataset, "./data/Supermarket_dataset.rds")
+```
+
+Initial view into the dataset
+```{r}
 head(Supermarket_dataset)
-
+dim(Supermarket_dataset)
 ```
 
+# plotting wiht ggplot2
 ```{r}
-install.packages("usethis")
-```
+p <- ggplot2::ggplot(Supermarket_dataset, aes(x = income_group, y = juice_post))
+p + geom_boxplot(outlier.shape = NA) + geom_jitter(width = 0.2)
 
-```{r}
-library(usethis)
-# send us to github togen creator
-usethis::create_github_token()
-```
-
-```{r}
-gitcreds::gitcreds_set() # 
-```
-
-```{r}
-usethis::use_git()
-```
-
-```{r}
-
-```
-
-```{r}
-usethis::use_github()
 ```
